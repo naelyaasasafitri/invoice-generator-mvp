@@ -7,36 +7,14 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "migrate": "tsx api/migrate.ts",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
-    "deploy:cloudflare": "./deploy-cloudflare.sh",
-    "cf:dev": "wrangler pages dev .output --d1=invoice_db:DB",
-    "cf:migrate": "wrangler d1 execute invoice_db --remote --file=./api/db/d1-migrations/0001_initial.sql",
-    "cf:migrate:local": "wrangler d1 execute invoice_db --local --file=./api/db/d1-migrations/0001_initial.sql"
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "nuxt": "^3.13.0",
-    "hono": "^4.11.8",
-    "@hono/zod-validator": "^0.4.2",
-    "drizzle-orm": "^0.33.0",
-    "better-sqlite3": "^11.5.0",
-    "zod": "^3.25.76",
-    "lucide-vue-next": "^0.563.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
-    "puppeteer": "^23.11.1"
+    "lucide-vue-next": "^0.563.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.12",
-    "drizzle-kit": "^0.28.1",
-    "eslint": "^9.18.0",
-    "prettier": "^3.4.2",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
-    "wrangler": "^3.78.5"
+    "typescript": "^5.7.2"
   }
 }

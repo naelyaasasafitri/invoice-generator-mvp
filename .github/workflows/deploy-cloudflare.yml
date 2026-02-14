@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Build for Cloudflare Pages
 
 on:
   push:
@@ -8,12 +8,11 @@ on:
 
 permissions:
   contents: read
-  deployments: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    name: Deploy to Cloudflare Pages
+    name: Build Project
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,20 +20,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build with Nuxt
         run: npm run build
         env:
           NODE_ENV: production
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: invoice-generator-mvp
-          directory: .output
+          name: build-output
+          path: .output

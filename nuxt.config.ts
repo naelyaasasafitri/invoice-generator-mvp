@@ -29,6 +29,8 @@ export default defineNuxtConfig({
     experimental: {
       openAPI: true,
     },
+    // Simplified for better compatibility
+    preset: 'cloudflare-pages',
   },
 
   runtimeConfig: {
