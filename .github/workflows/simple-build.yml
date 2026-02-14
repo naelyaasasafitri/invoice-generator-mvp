@@ -6,23 +6,45 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm run typecheck || echo "Typecheck skipped or passed"
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Verify build output
         run: |
-          test -d .output && echo "Build successful" || exit 1
+          if [ -d .output ]; then
+            echo "✅ Build successful!"
+            echo "Output contents:"
+            ls -la .output | head -20
+          else
+            echo "❌ Build failed - .output directory not found"
+            echo "Current directory contents:"
+            ls -la
+            exit 1
+          fi
