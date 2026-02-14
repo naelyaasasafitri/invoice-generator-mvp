@@ -1,0 +1,29 @@
+# Cloudflare Workers/Pages configuration
+
+name = "invoice-mvp"
+compatibility_date = "2024-01-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "invoice_db"
+database_id = "your-database-id" # Get this after creating D1 database
+
+# Pages configuration
+[build]
+command = "npm run build"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[[build.upload]]
+format = "modules"
+main = "./.output/server/index.mjs"
+
+[build.upload.rules]
+type = "ESModule"
+globs = ["**/*.js", "**/*.mjs"]
+
+# Environment variables (optional)
+[vars]
+# Add your environment variables here
