@@ -1,22 +1,29 @@
 # Invoice Generator MVP
 
-A simple, full-stack invoice generator application built with Nuxt 3, Hono, and SQLite.
+A simple invoice generator application built with Nuxt 3.
+
+## ⚠️ Important Note
+
+**GitHub Actions CI/CD is currently experiencing issues.**
+
+For deployment, please use:
+- **Option A:** Manual deployment with Wrangler CLI (see below)
+- **Option B:** Cloudflare Pages GitHub Integration (see [DEPLOY_NOW.md](DEPLOY_NOW.md))
+
+For details on the issues, see [ISSUES_SUMMARY.md](ISSUES_SUMMARY.md).
 
 ## Features
 
 - ✅ Create invoices with multiple line items
 - ✅ List and view all invoices
-- ✅ Edit existing invoices
 - ✅ Delete invoices
 - ✅ Invoice status management (Draft, Sent, Paid, Overdue)
 - ✅ Tax and discount support
 - ✅ PDF generation (HTML-based, print-ready)
-- ✅ SQLite database for data persistence
-- ✅ Type-safe API with Zod validation
 - ✅ Responsive UI with Tailwind CSS
-- ✅ **Invoice templates** - Save time with reusable templates
-- ✅ **Template management** - Create, edit, delete templates
-- ✅ **Quick invoice creation** - Load from template to create invoices faster
+- ✅ Client-side storage (localStorage)
+
+> **Note:** Full backend with database coming soon. Current version uses localStorage for demonstration.
 
 ## Tech Stack
 
@@ -304,7 +311,29 @@ POST /api/templates
 
 ## Deployment
 
-### 🚀 Quick Deploy to Cloudflare
+### 🚀 Quick Deploy (RECOMMENDED)
+
+Due to GitHub Actions issues, we recommend:
+
+**Option 1: Cloudflare Pages GitHub Integration** (Easiest)
+- See [DEPLOY_NOW.md](DEPLOY_NOW.md) for step-by-step guide
+- Takes ~10-15 minutes
+- Auto-deploy on every push
+
+**Option 2: Manual Deploy with Wrangler**
+```bash
+npm install
+npm run build
+npx wrangler pages deploy .output
+```
+- Takes ~5 minutes
+- Full control
+
+### GitHub Actions Status
+
+❌ **Currently failing** - See [ISSUES_SUMMARY.md](ISSUES_SUMMARY.md) for details.
+
+### Quick Deploy to Cloudflare
 
 Want to deploy now? See **[DEPLOY_NOW.md](DEPLOY_NOW.md)** for a 5-minute deployment guide!
 
