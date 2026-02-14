@@ -304,7 +304,23 @@ POST /api/templates
 
 ## Deployment
 
+### 🚀 Quick Deploy to Cloudflare
+
+Want to deploy now? See **[DEPLOY_NOW.md](DEPLOY_NOW.md)** for a 5-minute deployment guide!
+
 ### Cloudflare Pages (Recommended with D1)
+
+**Option A: GitHub Integration (Easiest)**
+- ✅ Automatic deployment on every push
+- ✅ No manual steps needed
+- ✅ CI/CD included
+- See **[DEPLOY_NOW.md](DEPLOY_NOW.md)** for setup
+
+**Option B: Manual Deploy**
+- ✅ Full control over deployment
+- ✅ Use Wrangler CLI
+- See **[GITHUB_DEPLOY.md](GITHUB_DEPLOY.md)** for guide
+- See **[MANUAL_SETUP.md](MANUAL_SETUP.md)** for manual setup
 
 For deployment to Cloudflare Pages with D1 database, see [CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md) for detailed instructions.
 
