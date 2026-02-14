@@ -39,6 +39,3 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: invoice-generator-mvp
           directory: .output
-          # Optional: Add D1 database binding
-          # wranglerVariables: |
-          #   DB: ${{ secrets.D1_DATABASE_BINDING }}
