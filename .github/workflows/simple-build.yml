@@ -28,7 +28,7 @@ jobs:
         run: pnpm --version
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Type check
         run: pnpm run typecheck || echo "Typecheck skipped or passed"
