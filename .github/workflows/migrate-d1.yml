@@ -1,0 +1,38 @@
+name: Migrate D1 Database
+
+on:
+  workflow_dispatch:
+    inputs:
+      migration_file:
+        description: 'Migration file path'
+        required: true
+        default: './api/db/d1-migrations/0001_initial.sql'
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    name: Run D1 Migration
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Run Migration
+        run: |
+          wrangler d1 execute invoice_db \
+            --remote \
+            --file=${{ github.event.inputs.migration_file }} \
+            --accountId=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
